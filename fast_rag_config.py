@@ -5,9 +5,9 @@ import os
 
 
 class FastRAGConfig:
-    # =====================================================================
+  
     # VECTOR DATABASE SETTINGS
-    # =====================================================================
+    
 
     DB_PATH = os.getenv(
         "RAG_DB_PATH",
@@ -19,9 +19,8 @@ class FastRAGConfig:
         "caramella_paragraphs"
     )
 
-    # =====================================================================
     # EMBEDDING MODEL (optimized for speed)
-    # =====================================================================
+
     # MUST match what was used during ingestion (768-dim model)
     EMBED_MODEL = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
     EMBED_DEVICE = "cpu"             
@@ -33,18 +32,18 @@ class FastRAGConfig:
     USE_RERANKING = False             
     MIN_SIMILARITY = 0.5
 
-    # =====================================================================
+ 
     # CONTEXT SIZE (CRITICAL FOR SPEED)
-    # =====================================================================
+    
 
     MAX_CONTEXT_DOCS = 3              # allow one more snippet for completeness
     MAX_CONTEXT_CHARS = 600           # allow a bit more text per doc
 
     USE_MULTI_COLLECTION = False
 
-    # =====================================================================
+   
     # GENERATION SETTINGS
-    # =====================================================================
+    
 
     LLM_MODEL_PATH = os.getenv(
         "RAG_MODEL_PATH",
@@ -68,9 +67,9 @@ class FastRAGConfig:
     TOP_P = 0.80  
     REPEAT_PENALTY = 1.1  
 
-    # =====================================================================
+ 
     # TRANSLATION DISABLED FOR SPEED
-    # =====================================================================
+ 
 
     TRANSLATION_ENABLED = False
     TRANSLATE_CONTEXT_TO_ENGLISH = False
@@ -79,9 +78,9 @@ class FastRAGConfig:
     TRANSLATION_MODEL_KO_EN = "Helsinki-NLP/opus-mt-ko-en"
     TRANSLATION_MODEL_EN_KO = "Helsinki-NLP/opus-mt-en-ko"
 
-    # =====================================================================
+  
     # PERFORMANCE SETTINGS
-    # =====================================================================
+
 
     REQUEST_TIMEOUT = 10.0            
     ENABLE_CACHING = True
@@ -94,9 +93,9 @@ class FastRAGConfig:
     # Source annotation
     DISABLE_SOURCE_ANNOTATION = False 
 
-    # =====================================================================
+    
     # FALLBACK STRATEGY
-    # =====================================================================
+  
 
     ENABLE_FALLBACK = True
     FALLBACK_ANSWER = (
@@ -104,9 +103,8 @@ class FastRAGConfig:
         "Please try rephrasing your question."
     )
 
-    # =====================================================================
     # CONFIG SUMMARY
-    # =====================================================================
+
 
     @classmethod
     def get_config_summary(cls) -> dict:
@@ -149,9 +147,8 @@ class FastRAGConfig:
         print("=" * 70)
 
 
-# =====================================================================
 # DEPLOYMENT PROFILES
-# =====================================================================
+
 
 class DeploymentProfiles:
     """Preset profiles for deployment environments."""
