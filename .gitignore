@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Node/React
+frontend/node_modules/
+frontend/dist/
+
+# Data & Models
+models/*.gguf
+data/chromadb/
+caramella_vector_db/
+CaramellaVectordb/
+SAMPLE_DATA/private/
+
+# Logs & caches
+*.log
+logs/
+.cache/
+.DS_Store
+DEVELOPMENT_CONTENTS.md
+GITHUB_PUBLISHING_CHECKLIST.md
+QUICK_START.md
+ProprocessingPDFs.ipynb

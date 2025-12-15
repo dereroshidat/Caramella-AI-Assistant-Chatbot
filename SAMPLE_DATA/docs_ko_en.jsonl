@@ -1,0 +1,5 @@
+{"id":"ko_001","text":"ISO 15489-1은 기록 분류의 원칙을 제시한다.","lang":"ko","category":"records","source":"synthetic"}
+{"id":"ko_002","text":"공공기록물의 보존 기간은 기록 유형에 따라 달라진다.","lang":"ko","category":"retention","source":"synthetic"}
+{"id":"en_001","text":"Records classification organizes documents by function and retention.","lang":"en","category":"records","source":"synthetic"}
+{"id":"en_002","text":"Retention schedules define how long records must be kept.","lang":"en","category":"retention","source":"synthetic"}
+{"id":"ko_003","text":"곰팡이가 생긴 기록물은 온도와 습도를 조절하여 보존한다.","lang":"ko","category":"preservation","source":"synthetic"}
