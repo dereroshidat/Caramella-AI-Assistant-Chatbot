@@ -26,8 +26,8 @@ AI Assistant Chatbot optimized for 4GB edge devices using llama.cpp, Qwen2.5-1.5
 - Steps:
   1) Create `models/` if it does not exist.
   2) Download the GGUF file and place it at `models/qwen2.5-1.5b-instruct-q5_k_m.gguf`.
-  3) If you use a different path or filename, set `RAG_MODEL_PATH` in `.env` accordingly.
-  4) Keep model files out of Git; they are large and not versioned here.
+  
+  
 
      
 ## Quick Start
@@ -69,7 +69,7 @@ npm run dev
   ├─ frontend/                 # React + Vite frontend
   ├─ scripts/                  # Helper scripts (build DB, run API/UI)
   ├─ SAMPLE_DATA/              # Tiny KO/EN sample corpus
-  ├─ models/                   # (you place GGUF here, not versioned)
+  ├─ models/                   # (place GGUF here, not versioned)
   ├─ fast_rag_config.py        # Runtime config
   ├─ fast_rag_pipeline.py      # RAG pipeline logic
   ├─ fast_rag_service.py       # Service wrapper
