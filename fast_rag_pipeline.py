@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""
-Fast RAG Pipeline – Optimized for 1–3 second latency
-Bilingual behavior:
-- Korean question → Korean answer
-- English question → English answer
-- If context is Korean and question is English → model may answer in either language
-"""
+
 
 import time
 import re
@@ -27,9 +21,9 @@ from llama_cpp import Llama
 from fast_rag_config import FastRAGConfig
 
 
-# -----------------------------------------------------
+
 # Language detection
-# -----------------------------------------------------
+
 def detect_language(text: str) -> str:
     """Return 'ko' for Korean, else 'en'."""
     if not text:
@@ -52,9 +46,8 @@ def detect_language(text: str) -> str:
     return "en"
 
 
-# -----------------------------------------------------
 # Performance logging
-# -----------------------------------------------------
+
 class PerformanceMetrics:
     def __init__(self):
         self.process = psutil.Process(os.getpid())
@@ -87,9 +80,9 @@ class PerformanceMetrics:
         print(f"   Throughput:    {after['tps']:.1f} tokens/sec")
 
 
-# -----------------------------------------------------
+
 # Main RAG Pipeline
-# -----------------------------------------------------
+
 class FastRAGPipeline:
     def __init__(self, db_path=None, collection_name=None, model_path=None,
                  config=None, verbose=False):
@@ -112,9 +105,9 @@ class FastRAGPipeline:
 
         print("✅ Fast RAG Pipeline Ready!\n")
 
-    # -------------------------------------------------
+    
     # Vector DB
-    # -------------------------------------------------
+    
     def _init_vector_db(self, db_path, collection_name):
         start = time.time()
         print(f"📚 Loading ChromaDB: {db_path}/{collection_name}")
@@ -125,9 +118,9 @@ class FastRAGPipeline:
         count = self.collection.count()
         print(f"   ✅ {count:,} documents loaded in {(time.time() - start) * 1000:.0f} ms")
 
-    # -------------------------------------------------
+
     # Embeddings
-    # -------------------------------------------------
+   
     def _init_embeddings(self):
         start = time.time()
         print(f"🔤 Loading embeddings: {self.config.EMBED_MODEL}")
@@ -144,9 +137,9 @@ class FastRAGPipeline:
 
         print(f"   ✅ Ready on {self.device} in {(time.time() - start) * 1000:.0f} ms")
 
-    # -------------------------------------------------
+   
     # LLM
-    # -------------------------------------------------
+ 
     def _init_llm(self, model_path):
         start = time.time()
         print(f"🤖 Loading LLM: {model_path}")
@@ -164,9 +157,8 @@ class FastRAGPipeline:
 
         print(f"   ✅ Model loaded in {(time.time() - start) * 1000:.0f} ms")
 
-    # -------------------------------------------------
     # Embedding
-    # -------------------------------------------------
+   
     @torch.no_grad()
     @lru_cache(maxsize=1000)
     def embed_query(self, q: str) -> tuple:
@@ -186,9 +178,9 @@ class FastRAGPipeline:
 
         return tuple(emb[0].cpu().tolist())
 
-    # -------------------------------------------------
+ 
     # Retrieval
-    # -------------------------------------------------
+
     def retrieve(self, query: str, top_k=None):
         start = time.time()
         top_k = top_k or self.config.TOP_K
@@ -216,12 +208,11 @@ class FastRAGPipeline:
 
         return docs, (time.time() - start)
 
-    # -------------------------------------------------
+ 
     # Prompt creation (BILINGUAL)
-    # -------------------------------------------------
-        # -------------------------------------------------
+
     # Prompt creation (bilingual, grounded)
-    # -------------------------------------------------
+
     def _build_prompt(self, query: str, docs: List[Dict]) -> str:
         q_lang = detect_language(query)
 
@@ -304,9 +295,9 @@ ANSWER:"""
 
         return prompt.strip()
 
-    # -------------------------------------------------
+  
     # Generation
-    # -------------------------------------------------
+
     def generate(self, query: str, docs: List[Dict]) -> Tuple[str, float]:
         start = time.time()
         prompt = self._build_prompt(query, docs)
@@ -374,9 +365,9 @@ ANSWER:"""
 
         return answer, gen_time
 
-    # -------------------------------------------------
+    
     # Query
-    # -------------------------------------------------
+    
     def query(self, query: str, top_k=None, timeout=None):
         start = time.time()
         timeout = timeout or self.config.REQUEST_TIMEOUT
@@ -414,9 +405,9 @@ ANSWER:"""
         }
 
 
-# -----------------------------------------------------
+
 # CLI
-# -----------------------------------------------------
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Fast RAG Pipeline")
