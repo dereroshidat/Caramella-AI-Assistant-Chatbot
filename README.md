@@ -62,7 +62,7 @@ npm run dev
   - `RAG_GPU_LAYERS=28` (GPU offload)
   - `CHROMADB_PATH` (disk-backed vector DB)
 
- ## Project Structure (minimal runnable set)
+ ## Project Structure 
   ```
   .
   ├─ api/                      # FastAPI backend
