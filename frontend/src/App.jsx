@@ -3,7 +3,11 @@ import axios from 'axios'
 import './App.css'
 
 // API base URL
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+// Support both VITE_API_URL and VITE_API_BASE for flexibility
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_API_BASE ||
+  'http://localhost:8000'
 
 function App() {
   const [query, setQuery] = useState('')
